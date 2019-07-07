@@ -9,6 +9,8 @@ namespace DynamicTabs.Practise01.Models
 {
     public class DateTabModel : INotifyPropertyChanged
     {
+        public DelegateCommand StartRunningCommand { get; }
+        private bool HasStartedRunning = false;
         public string ModelName { get; }
         private int timeRan;
         public int TimeRan
@@ -26,17 +28,29 @@ namespace DynamicTabs.Practise01.Models
 
         public DateTabModel(int tabId)
         {
+            StartRunningCommand = new DelegateCommand(ExecuteStartRunningCommand, CanExecuteStartRunningCommand);
             ModelName = $"My name is Tabby{tabId}.";
-            StartRunning();
         }
 
-        public async void StartRunning()
+        private async void StartRunning()
         {
             while (true)
             {
                 await Task.Delay(1000);
                 TimeRan++;
             }            
+        }
+
+        private void ExecuteStartRunningCommand(object obj)
+        {
+            StartRunning();
+            HasStartedRunning = true;
+            StartRunningCommand.RaiseCanExecuteChanged();
+        }
+
+        private bool CanExecuteStartRunningCommand(object obj)
+        {
+            return !HasStartedRunning;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
