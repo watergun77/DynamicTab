@@ -5,7 +5,7 @@ namespace DynamicTabs.Practise01
 {
     public interface ITab
     {
-        string Name { get; set; }
+        string TabName { get; set; }
         ICommand CloseCommand { get; }
         event EventHandler CloseRequested;
     }
@@ -16,7 +16,7 @@ namespace DynamicTabs.Practise01
         {
             CloseCommand = new DelegateCommand(p => CloseRequested?.Invoke(this, EventArgs.Empty));
         }
-        public string Name { get; set; }
+        public string TabName { get; set; }
         public ICommand CloseCommand { get; }
         public event EventHandler CloseRequested;
     }

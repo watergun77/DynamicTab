@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DynamicTabs.Practise01.Views"
-             xmlns:tab="clr-namespace:DynamicTabs.Practise01"
+             xmlns:root="clr-namespace:DynamicTabs.Practise01"
              xmlns:tabvm="clr-namespace:DynamicTabs.Practise01.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button Command="{Binding NewTabCommand}" Margin="0,0,12,0">New Tab</Button>
+        <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Bottom"  Orientation="Horizontal">
+            <Button Command="{Binding NewTabCommand}" Margin="5" Width="100">Add Tab</Button>
+            <Button Command="{Binding CloseTabCommand}" Margin="5" Width="100">Close Tab</Button>
         </StackPanel>
         <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex, UpdateSourceTrigger=PropertyChanged}">
             <TabControl.Resources>
@@ -19,9 +20,9 @@
                 </DataTemplate>
             </TabControl.Resources>
             <TabControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type tab:ITab}">
+                <DataTemplate DataType="{x:Type root:ITab}">
                     <TextBlock>
-                        <Run Text="{Binding Name}"/>
+                        <Run Text="{Binding TabName}"/>
                         <Hyperlink Command="{Binding CloseCommand}">X</Hyperlink>
                     </TextBlock>
                 </DataTemplate>

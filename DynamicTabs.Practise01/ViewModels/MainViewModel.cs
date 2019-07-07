@@ -9,6 +9,7 @@ namespace DynamicTabs.Practise01.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         public ICommand NewTabCommand { get; }
+        public ICommand CloseTabCommand { get; }
         private readonly ObservableCollection<ITab> tabs;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -35,6 +36,7 @@ namespace DynamicTabs.Practise01.ViewModels
         public MainViewModel()
         {
             NewTabCommand = new DelegateCommand(NewTab);
+            CloseTabCommand = new DelegateCommand(CloseTab);
             tabs = new ObservableCollection<ITab>();
             tabs.CollectionChanged += Tabs_CollectionChanged;
             Tabs = tabs;
@@ -52,6 +54,12 @@ namespace DynamicTabs.Practise01.ViewModels
         {
             Tabs.Add(new DateTabViewModel(TabId++));
             SelectedTabIndex = Tabs.Count - 1;
+        }
+
+        private void CloseTab(object obj)
+        {
+            if (Tabs.Count > 1)
+                Tabs.RemoveAt(SelectedTabIndex);
         }
 
         private void Tabs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

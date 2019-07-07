@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              >
     <StackPanel>
-        <TextBlock Text="{Binding Name}"/>
+        <TextBlock Text="{Binding TabName}"/>
         <TextBlock Text="{Binding FixedString}"/>
         <TextBlock Text="{Binding MyDateTabModel.ModelName}"/>
         <StackPanel Orientation="Horizontal">            
@@ -15,10 +15,6 @@
             <TextBlock Text="{Binding MyDateTabModel.TimeRan, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text=" seconds"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding MyDateTabModel.StartRunningCommand}">Start Running</Button>
-            <Button>Add New Tab</Button>
-            <Button>Remove Tab</Button>
-        </StackPanel>
+        <Button Command="{Binding MyDateTabModel.StartRunningCommand}">Start Running</Button>
     </StackPanel>
 </UserControl>

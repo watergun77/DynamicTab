@@ -10,7 +10,7 @@ namespace DynamicTabs.Practise01.ViewModels
 
         public DateTabViewModel(int tabId)
         {
-            Name = DateTime.Now.ToString();
+            TabName = DateTime.Now.ToString();
             MyDateTabModel = new DateTabModel(tabId);
         }
     }
